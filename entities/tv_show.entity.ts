@@ -1,6 +1,10 @@
+import { ArgsType, Field, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
+@ObjectType()
+@ArgsType()
 export class TvShow {
+  @Field()
   @ApiProperty()
   id: number;
   @ApiProperty()
