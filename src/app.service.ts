@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TvShow } from 'entities/tv_show.entity';
 import { CreateTvShowDto } from 'dto/create-tv_show.dto';
+import { UpdateTvShowDto } from 'dto/update-tv_show.dto';
 
 @Injectable()
 export class AppService {
@@ -48,31 +49,13 @@ export class AppService {
     this.tv_shows.push(newTvShow);
     return newTvShow;
   }
-  /*
-  updateTvShow(
-    id: number,
-    series_name: string,
-    air_date: string,
-    number_seasons: number,
-    number_episodes: number,
-  ): TvShow {
-    const indexVal = this.getTvShowById[0];
-    const newTvShow = {
-      id: id,
-      series_name: series_name,
-      air_date: air_date,
-      number_seasons: number_seasons,
-      number_episodes: number_episodes,
-    };
-    return this.tv_shows.splice(indexVal, 1, newTvShow);
-  }
-  */
-  updateTvShow() {
-    return 'Updated TV Show goes here!';
-  }
 
-  private getTvShowById(id: number) {
-    const indexVal = this.tv_shows.findIndex((tvShow) => tvShow.id === id);
-    return [this.tv_shows[indexVal], indexVal];
+  updateTvShow(id: number, updateTvShowDto: UpdateTvShowDto) {
+    const findTvShow = this.findOneShow(id);
+    findTvShow.series_name = updateTvShowDto.series_name;
+    findTvShow.air_date = updateTvShowDto.air_date;
+    findTvShow.number_seasons = updateTvShowDto.number_seasons;
+    findTvShow.number_episodes = updateTvShowDto.number_episodes;
+    return findTvShow;
   }
 }
