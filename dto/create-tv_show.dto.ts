@@ -1,11 +1,10 @@
-import { ArgsType, Field } from '@nestjs/graphql';
+import { ArgsType, Field, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
 
+@ObjectType()
 @ArgsType()
 export class CreateTvShowDto {
   @Field()
-  @IsNotEmpty()
   @ApiProperty()
   id: number;
   @ApiProperty()
