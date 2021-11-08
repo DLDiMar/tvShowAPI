@@ -7,15 +7,13 @@ import { AppService } from './app.service';
 export class TvShowResolver {
   constructor(private tvShowService: AppService) {}
 
-  @Query(() => TvShow, { name: 'id', nullable: false })
-  findOneShow(@Args() getTvShowArgs: CreateTvShowDto) {
-    return this.tvShowService.findOneShow(Number('id'));
+  @Query(() => TvShow)
+  findAll(): TvShow[] {
+    return this.tvShowService.findAll();
   }
 
   @Mutation(() => TvShow)
-  updateTvShow(
-    @Args({ name: 'id', type: () => Number }) TvShow,
-  ): CreateTvShowDto {
-    return this.tvShowService.createTvShow(new TvShow());
+  createTvShow(@Args() createTvShowDto: CreateTvShowDto): TvShow {
+    return this.tvShowService.createTvShow(createTvShowDto);
   }
 }
